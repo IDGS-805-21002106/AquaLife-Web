@@ -1,0 +1,59 @@
+body {
+  background-color: #f3eef7;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-custom {
+  background-color: #f3eef7;
+  padding: 1rem 2rem;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link {
+  font-weight: 600;
+  color: #000;
+  margin: 0 15px;
+}
+
+.nav-link.active {
+  border-bottom: 3px solid #00c275;
+  color: #000;
+}
+
+.btn-login {
+  background-color: #00c275;
+  color: white;
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-weight: 500;
+  border: none;
+}
+.cotizacion-section {
+  padding: 40px 20px;
+}
+
+.form-cotizacion {
+  background-color: #dddddd;
+}
+
+.btn-enviar {
+  background-color: #00c275;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.image-placeholder-cotizacion {
+  background-color: #e8e0ee;
+  height: 320px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaa;
+  font-size: 1.2rem;
+  border: 1px dashed #c2bccc;
+}
