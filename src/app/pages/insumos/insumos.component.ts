@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-insumos',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './insumos.component.html',
+  styleUrl: './insumos.component.css'
 })
-export class LoginComponent {
+export class InsumosComponent {
 
 }

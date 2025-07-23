@@ -32,23 +32,36 @@ body {
   border: none;
 }
 
-.login-section {
+.dashboard-section {
   padding: 60px 20px;
 }
 
-.login-box {
-  width: 100%;
-  max-width: 400px;
+.dashboard-card {
   background-color: #dddddd;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
 }
 
-.btn-login-form {
-  background-color: #00c275;
-  color: white;
+.dashboard-card h5 {
+  color: #48C2A7;
+  margin-bottom: 10px;
   font-weight: bold;
-  border-radius: 8px;
 }
 
-.btn-login-form:hover {
-  background-color: #00a55f;
+.dashboard-card p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.alert-card {
+  background-color: #ffcaca;
 }

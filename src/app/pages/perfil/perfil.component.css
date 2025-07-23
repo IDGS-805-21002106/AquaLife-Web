@@ -32,23 +32,21 @@ body {
   border: none;
 }
 
-.login-section {
-  padding: 60px 20px;
+.perfil-section {
+  padding: 50px 20px;
 }
 
-.login-box {
-  width: 100%;
-  max-width: 400px;
-  background-color: #dddddd;
+.avatar-box {
+  background-color: #e8dfff;
+  width: 130px;
+  height: 130px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-login-form {
-  background-color: #00c275;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-}
-
-.btn-login-form:hover {
-  background-color: #00a55f;
+.avatar-icon {
+  font-size: 70px;
+  color: #502c84;
 }

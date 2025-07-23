@@ -32,23 +32,30 @@ body {
   border: none;
 }
 
-.login-section {
+.proveedores-section {
   padding: 60px 20px;
 }
 
-.login-box {
-  width: 100%;
-  max-width: 400px;
+.form-box {
   background-color: #dddddd;
+  border-radius: 10px;
 }
 
-.btn-login-form {
+.table-box {
+  background-color: #dddddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.table-header-green {
   background-color: #00c275;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
 }
 
-.btn-login-form:hover {
-  background-color: #00a55f;
+.btn-success {
+  background-color: #00c275;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #00a85f;
 }

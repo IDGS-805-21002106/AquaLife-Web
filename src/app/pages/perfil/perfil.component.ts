@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+
 @Component({
-  selector: 'app-login',
+  selector: 'app-perfil',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.css'
 })
-export class LoginComponent {
+export class PerfilComponent {
 
 }
