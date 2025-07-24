@@ -24,61 +24,86 @@
 
 <section class="insumos-section">
   <div class="container">
-    <h3 class="mb-4 text-center">Gestión de Insumos</h3>
+    <h3 class="mb-4 text-center">Gestión de Insumos - Costeo Promedio</h3>
+
     <div class="row">
+      <!-- Formulario -->
       <div class="col-md-4">
         <div class="form-box p-4 rounded shadow">
-          <form>
+          <form (ngSubmit)="agregarMovimiento()">
             <div class="mb-3">
-              <label>Nombre del insumo:</label>
-              <input type="text" class="form-control" />
+              <label>Producto:</label>
+              <input [(ngModel)]="nuevoMovimiento.producto" name="producto" class="form-control" required />
             </div>
             <div class="mb-3">
-              <label>Unidad de medida:</label>
-              <select class="form-select">
-                <option>Piezas</option>
-                <option>Unidades</option>
-                <option>Otra</option>
+              <label>Fecha:</label>
+              <input type="date" [(ngModel)]="nuevoMovimiento.fecha" name="fecha" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label>Tipo de movimiento:</label>
+              <select [(ngModel)]="nuevoMovimiento.tipo" name="tipo" class="form-select">
+                <option value="entrada">Entrada</option>
+                <option value="salida">Salida</option>
               </select>
             </div>
             <div class="mb-3">
-              <label>Cantidad disponible:</label>
-              <input type="number" class="form-control" />
+              <label>Cantidad:</label>
+              <input type="number" [(ngModel)]="nuevoMovimiento.cantidad" name="cantidad" class="form-control" required />
             </div>
-            <div class="mb-3">
-              <label>Proveedor:</label>
-              <input type="text" class="form-control" />
+            <div class="mb-3" *ngIf="nuevoMovimiento.tipo === 'entrada'">
+              <label>Costo unitario:</label>
+              <input type="number" [(ngModel)]="nuevoMovimiento.costo" name="costo" class="form-control" />
             </div>
-            <button class="btn btn-success w-100">Agregar</button>
+            <button class="btn btn-success w-100">Registrar movimiento</button>
           </form>
         </div>
       </div>
 
       <div class="col-md-8">
-        <div class="table-responsive table-box shadow">
-          <table class="table table-bordered">
-            <thead class="table-header-green text-white">
-              <tr>
-                <th>Insumo</th>
-                <th>Unidad</th>
-                <th>Cantidad</th>
-                <th>Proveedor</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ESP32</td>
-                <td>Piezas</td>
-                <td>15</td>
-                <td>MadeinChinaaaaa</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="card shadow p-3" *ngIf="productoSeleccionado">
+          <h5>Tarjeta de almacén - Producto: <strong>{{ productoSeleccionado }}</strong></h5>
+          <p *ngIf="getExistencias(productoSeleccionado) > 0 && getPromedio(productoSeleccionado) !== null">
+          Promedio actual = {{ getPromedio(productoSeleccionado) | number:'1.0-2' }}
+        </p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered mt-3">
+              <thead class="table-header-green text-white">
+                <tr>
+                  <th>Fecha</th>
+                  <th>Entrada</th>
+                  <th>Salida</th>
+                  <th>Existencias</th>
+                  <th>Costo</th>
+                  <th>Promedio</th>
+                  <th>Debe</th>
+                  <th>Haber</th>
+                  <th>Saldo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mov of tarjetas[productoSeleccionado]">
+                  <td>{{ mov.fecha }}</td>
+                  <td>{{ mov.tipo === 'entrada' ? mov.cantidad : '' }}</td>
+                  <td>{{ mov.tipo === 'salida' ? mov.cantidad : '' }}</td>
+                  <td>{{ mov.existencias }}</td>
+                  <td>{{ mov.costo || '-' }}</td>
+                  <td>{{ mov.promedio }}</td>
+                  <td>{{ mov.debe || '-' }}</td>
+                  <td>{{ mov.haber || '-' }}</td>
+                  <td>{{ mov.saldo }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Selector de producto -->
+        <div class="mt-4">
+          <label>Ver tarjeta de:</label>
+          <select class="form-select" [(ngModel)]="productoSeleccionado" name="productoSeleccionado">
+            <option *ngFor="let prod of productosDisponibles" [value]="prod">{{ prod }}</option>
+          </select>
         </div>
       </div>
     </div>

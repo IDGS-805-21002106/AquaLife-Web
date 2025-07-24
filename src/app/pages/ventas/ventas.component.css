@@ -31,7 +31,8 @@ body {
   font-weight: 500;
   border: none;
 }
-.insumos-section {
+
+.ventas-section {
   padding: 50px 20px;
 }
 
@@ -57,25 +58,4 @@ body {
 
 .btn-success:hover {
   background-color: #00a85f;
-}
-.insumos-section {
-  padding: 50px 20px;
-}
-
-.form-box {
-  background-color: #dddddd;
-}
-
-.card {
-  background-color: #eeeeee;
-  border-radius: 10px;
-}
-
-.table-header-green {
-  background-color: #00c275;
-}
-
-.btn-success {
-  background-color: #00c275;
-  border: none;
 }

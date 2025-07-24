@@ -1,0 +1,80 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/LogoAL.png" alt="AquaLife Logo" />
+    </a>
+    <div class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex">
+      <button class="btn btn-login">Log in</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Sección de Valoraciones -->
+<section class="valoraciones-section">
+  <div class="container">
+    <h2 class="text-center mb-5">Valoraciones de Clientes</h2>
+
+    <!-- Tarjetas de comentarios -->
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let valoracion of [1,2,3]">
+        <div class="card valoracion-card shadow-sm">
+          <div class="card-body">
+            <div class="stars mb-2">
+              ⭐⭐⭐⭐☆
+            </div>
+            <p class="comentario">
+              AquaLife ha sido una solución increíble para cuidar mis plantas y ahorrar agua. ¡Lo recomiendo totalmente!
+            </p>
+            <p class="autor"> Mariana G.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Otra tarjeta de ejemplo -->
+      <div class="col-md-4">
+        <div class="card valoracion-card shadow-sm">
+          <div class="card-body">
+            <div class="stars mb-2">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p class="comentario">
+              El sistema funciona de maravilla. La instalación fue sencilla y el soporte técnico excelente.
+            </p>
+            <p class="autor"> Carlos P.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card valoracion-card shadow-sm">
+          <div class="card-body">
+            <div class="stars mb-2">
+              ⭐⭐⭐☆☆
+            </div>
+            <p class="comentario">
+              Es una buena inversión, aunque me gustaría ver más opciones en la app móvil.
+            </p>
+            <p class="autor">– Laura M.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <button class="btn btn-success">Agregar valoración</button>
+    </div>
+  </div>

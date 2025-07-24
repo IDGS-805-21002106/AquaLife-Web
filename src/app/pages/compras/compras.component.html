@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/LogoAL.png" alt="AquaLife Logo" />
+    </a>
+    <div class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex">
+      <button class="btn btn-login">Log in</button>
+    </div>
+  </div>
+</nav>
+
+<section class="compras-section">
+  <div class="container">
+    <h3 class="mb-4 text-center">Gestión de Compras</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-box p-4 rounded shadow">
+          <form>
+            <div class="mb-3">
+              <label>Proveedor:</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label>Producto comprado:</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label>Cantidad:</label>
+              <input type="number" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label>Precio Total:</label>
+              <input type="number" step="0.01" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label>Fecha de compra:</label>
+              <input type="date" class="form-control" />
+            </div>
+            <button class="btn btn-success w-100">Registrar Compra</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="table-responsive table-box shadow">
+          <table class="table table-bordered">
+            <thead class="table-header-green text-white">
+              <tr>
+                <th>Proveedor</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AquaDistribuidor</td>
+                <td>Agua pluvial</td>
+                <td>100</td>
+                <td>$1,500</td>
+                <td>2025-07-24</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary">Editar</button>
+                  <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
