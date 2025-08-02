@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DecimalPipe } from '@angular/common';
-import { NgFor } from '@angular/common';
-import {NgIf} from '@angular/common';
+import { DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { AquaService } from '../../services/aqua.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+
 
 interface Movimiento {
   fecha: string;
@@ -20,80 +21,172 @@ interface Movimiento {
 @Component({
   selector: 'app-insumos',
   standalone: true,
-  imports: [RouterModule, FormsModule, DecimalPipe, NgFor, NgIf],
+  imports: [RouterModule, FormsModule, DecimalPipe, NgFor, NgIf, NavbarComponent],
   templateUrl: './insumos.component.html',
-  styleUrl: './insumos.component.css'
+  styleUrls: ['./insumos.component.css']
 })
-export class InsumosComponent {
+export class InsumosComponent implements OnInit {
+  insumos: any[] = [];
+  tarjetas: { [producto: string]: Movimiento[] } = {};
+  productoSeleccionado: string = '';
 
   nuevoMovimiento = {
     producto: '',
-    fecha: '',
+    unidadMedida: 'unidad',
+    fecha: new Date().toISOString().split('T')[0],
     tipo: 'entrada' as 'entrada' | 'salida',
-    cantidad: 0,
+    cantidad: 1,
     costo: 0
   };
 
-  tarjetas: { [producto: string]: Movimiento[] } = {};
+  constructor(private servicio: AquaService) {}
 
-  productoSeleccionado: string = '';
-
-  get productosDisponibles(): string[] {
-    return Object.keys(this.tarjetas);
+  ngOnInit(): void {
+    this.cargarInsumos();
   }
 
-  agregarMovimiento() {
+  cargarInsumos(): void {
+    this.servicio.getInsumos().subscribe({
+      next: (data) => {
+        this.insumos = data;
+        this.procesarMovimientos(data);
+        if (this.insumos.length > 0) {
+          this.productoSeleccionado = this.insumos[0].nombre;
+        }
+      },
+      error: (err) => console.error('Error al cargar insumos:', err)
+    });
+  }
+
+  procesarMovimientos(data: any[]): void {
+    this.tarjetas = {};
+    data.forEach(insumo => {
+      const movimientos = insumo.movimientos || [];
+      let existencias = 0;
+      let saldo = 0;
+      let promedio = 0;
+
+      this.tarjetas[insumo.nombre] = movimientos.map((mov: any) => {
+        const movimiento: Movimiento = {
+          fecha: new Date(mov.fecha).toLocaleDateString(),
+          tipo: mov.tipo,
+          cantidad: mov.cantidad,
+          costo: mov.costoUnitario || 0,
+          existencias: 0,
+          promedio: 0,
+          saldo: 0,
+          debe: mov.debe || 0,
+          haber: mov.haber || 0
+        };
+
+        if (mov.tipo === 'entrada') {
+          movimiento.debe = mov.cantidad * (mov.costoUnitario || 0);
+          existencias += mov.cantidad;
+          saldo += movimiento.debe;
+          promedio = saldo / existencias;
+        } else {
+          movimiento.haber = mov.cantidad * promedio;
+          existencias -= mov.cantidad;
+          saldo -= movimiento.haber;
+        }
+
+        movimiento.existencias = existencias;
+        movimiento.saldo = saldo;
+        movimiento.promedio = promedio;
+
+        return movimiento;
+      });
+    });
+  }
+
+  agregarMovimiento(): void {
+    if (!this.validarMovimiento()) return;
+
+    const insumoExistente = this.insumos.find(
+      i => i.nombre.toLowerCase() === this.nuevoMovimiento.producto.trim().toLowerCase()
+    );
+
+    if (insumoExistente) {
+      this.registrarMovimiento(insumoExistente.id);
+    } else {
+      if (this.nuevoMovimiento.tipo === 'entrada') {
+        this.crearYRegistrarInsumo();
+      } else {
+        alert('No puede registrar salida de un insumo no existente');
+      }
+    }
+  }
+
+  validarMovimiento(): boolean {
     const { producto, fecha, tipo, cantidad, costo } = this.nuevoMovimiento;
-
-    if (!producto || !fecha || !tipo || cantidad <= 0 || (tipo === 'entrada' && costo <= 0)) {
-      alert('Completa todos los campos correctamente');
-      return;
+    
+    if (!producto || !fecha) {
+      alert('Complete todos los campos obligatorios');
+      return false;
     }
 
-    if (!this.tarjetas[producto]) {
-      this.tarjetas[producto] = [];
+    if (cantidad <= 0) {
+      alert('La cantidad debe ser mayor a cero');
+      return false;
     }
 
-    const movimientos = this.tarjetas[producto];
-    const anterior = movimientos[movimientos.length - 1];
+    if (tipo === 'entrada' && costo <= 0) {
+      alert('Ingrese un costo válido para entradas');
+      return false;
+    }
 
-    let existencias = anterior ? anterior.existencias : 0;
-    let saldo = anterior ? anterior.saldo : 0;
-    let promedio = anterior ? anterior.promedio : 0;
+    return true;
+  }
 
-    let nuevo: Movimiento = {
-      fecha,
-      tipo,
-      cantidad,
-      costo,
-      existencias: 0,
-      promedio: 0,
-      saldo: 0
+  registrarMovimiento(insumoId: number): void {
+    const movimiento = {
+      insumoId: insumoId,
+      fecha: new Date(this.nuevoMovimiento.fecha).toISOString(),
+      tipo: this.nuevoMovimiento.tipo,
+      cantidad: this.nuevoMovimiento.cantidad,
+      costoUnitario: this.nuevoMovimiento.tipo === 'entrada' ? this.nuevoMovimiento.costo : null
     };
 
-    if (tipo === 'entrada') {
-      nuevo.debe = cantidad * costo;
-      nuevo.existencias = existencias + cantidad;
-      nuevo.saldo = saldo + nuevo.debe;
-      nuevo.promedio = Math.floor(nuevo.saldo / nuevo.existencias);
-    } else {
-      nuevo.haber = cantidad * promedio;
-      nuevo.existencias = existencias - cantidad;
-      nuevo.saldo = saldo - nuevo.haber;
-      nuevo.promedio = promedio;
-    }
+    this.servicio.postMovimiento(movimiento).subscribe({
+      next: () => {
+        this.cargarInsumos();
+        this.resetearFormulario();
+        alert('Movimiento registrado correctamente');
+      },
+      error: (err) => {
+        console.error('Error al registrar movimiento:', err);
+        alert('Error al registrar movimiento. Verifique la consola para más detalles.');
+      }
+    });
+  }
 
-    movimientos.push(nuevo);
+  crearYRegistrarInsumo(): void {
+    const nuevoInsumo = {
+      nombre: this.nuevoMovimiento.producto.trim(),
+      cantidadDisponible: 0,
+      unidadMedida: this.nuevoMovimiento.unidadMedida
+    };
 
+    this.servicio.postInsumo(nuevoInsumo).subscribe({
+      next: (res: any) => {
+        this.registrarMovimiento(res.id);
+      },
+      error: (err) => {
+        console.error('Error al crear insumo:', err);
+        alert('Error al crear nuevo insumo');
+      }
+    });
+  }
+
+  resetearFormulario(): void {
     this.nuevoMovimiento = {
       producto: '',
-      fecha: '',
-      tipo: 'entrada',
-      cantidad: 0,
+      unidadMedida: 'unidad',
+      fecha: new Date().toISOString().split('T')[0],
+      tipo: this.nuevoMovimiento.tipo,
+      cantidad: 1,
       costo: 0
     };
-
-    this.productoSeleccionado = producto;
   }
 
   getExistencias(producto: string): number {

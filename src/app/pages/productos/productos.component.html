@@ -1,26 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img src="assets/LogoAL.png" alt="AquaLife Logo" />
-    </a>
-    <div class="collapse navbar-collapse justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/productos">Productos</a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-flex">
-      <button class="btn btn-login">Log in</button>
-    </div>
-  </div>
-</nav>
+<app-navbar></app-navbar>
+
 
 <section class="productos-section">
   <div class="container">
@@ -28,24 +7,45 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-box p-4 shadow">
-          <form>
+          <form (ngSubmit)="registrarProducto()">
             <div class="mb-3">
               <label>Nombre del producto:</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
             </div>
             <div class="mb-3">
               <label>Precio:</label>
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" [(ngModel)]="nuevoProducto.precio" name="precio" min="0.01" step="0.01" required>
             </div>
             <div class="mb-3">
               <label>Descripción:</label>
-              <textarea class="form-control"></textarea>
+              <textarea class="form-control" [(ngModel)]="nuevoProducto.descripcion" name="descripcion"></textarea>
             </div>
+            
             <div class="mb-3">
-              <label>Insumos (explosión de materiales):</label>
-              <textarea class="form-control" placeholder="Ej. 1 válvula, 2 tubos PVC, 1 tanque"></textarea>
+              <label>Agregar Insumos:</label>
+              <div class="input-group mb-2">
+                <select class="form-select" [(ngModel)]="nuevoInsumoProducto.insumoId" name="insumoId">
+                  <option [ngValue]="0" disabled selected>Seleccione un insumo</option>
+                  <option *ngFor="let insumo of insumos" [ngValue]="insumo.id">
+                    {{ insumo.nombre }} ({{ insumo.unidadMedida }})
+                  </option>
+                </select>
+
+                <input type="number" class="form-control" [(ngModel)]="nuevoInsumoProducto.cantidad" name="cantidad" min="1" placeholder="Cantidad">
+                <button type="button" class="btn btn-primary" (click)="agregarInsumoAProducto()">+</button>
+              </div>
+              
+              <div class="insumos-agregados">
+                <div *ngFor="let item of nuevoProducto.insumos; let i = index" class="d-flex justify-content-between align-items-center mb-2">
+                  <span>
+                    {{ getNombreInsumo(item.insumoId) }} - {{ item.cantidad }} {{ getUnidadMedida(item.insumoId) }}
+                  </span>
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removerInsumo(i)">×</button>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-success w-100">Registrar Producto</button>
+            
+            <button type="submit" class="btn btn-success w-100">Registrar Producto</button>
           </form>
         </div>
       </div>
@@ -57,40 +57,24 @@
               <tr>
                 <th>Producto</th>
                 <th>Precio</th>
-                <th>Receta (Materiales)</th>
+                <th>Insumos</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Kit Riego Básico</td>
-                <td>$1,200</td>
+              <tr *ngFor="let producto of productos">
+                <td>{{ producto.nombre }}</td>
+                <td>${{ producto.precio | number:'1.2-2' }}</td>
                 <td>
                   <ul class="list-unstyled mb-0">
-                    <li>1 válvula electrónica</li>
-                    <li>2 tubos PVC</li>
-                    <li>1 tanque recolector</li>
+                    <li *ngFor="let pi of producto.productoInsumos">
+                      {{ getNombreInsumo(pi.insumoId) }} - {{ pi.cantidad }} {{ getUnidadMedida(pi.insumoId) }}
+                    </li>
                   </ul>
                 </td>
                 <td>
-                  <button class="btn btn-sm btn-outline-primary">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Kit Avanzado</td>
-                <td>$2,400</td>
-                <td>
-                  <ul class="list-unstyled mb-0">
-                    <li>2 válvulas</li>
-                    <li> 4 tubos PVC</li>
-                    <li>1 sensor de humedad</li>
-                    <li>1 tanque recolector</li>
-                  </ul>
-                </td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                  <button class="btn btn-sm btn-outline-primary" (click)="editarProducto(producto)">Editar</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="eliminarProducto(producto.id)">Eliminar</button>
                 </td>
               </tr>
             </tbody>

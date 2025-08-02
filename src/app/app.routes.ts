@@ -13,22 +13,26 @@ import { ValoracionesComponent } from './pages/valoraciones/valoraciones.compone
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/productos/productos.component';
+import { RoleGuard } from './guards/role-guard';
+
+
 
 export const routes: Routes = [
-  { path: '', component: InicioComponent },
+  { path: 'inicio', component: InicioComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
-  { path: 'cotizaciones', component: CotizacionesComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'proveedores', component: ProveedoresComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'insumos', component: InsumosComponent },
-  { path: 'compras', component: ComprasComponent },
   { path: 'faq', component: FaqComponent },
-  { path: 'valoraciones', component: ValoracionesComponent },
-  { path: 'ventas', component: VentasComponent },
-  { path: 'usuarios', component: UsuariosComponent },
-  {path: 'productos', component: ProductosComponent }
 
+  { path: 'cotizaciones', component: CotizacionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
+  { path: 'perfil', component: PerfilComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
+  { path: 'valoraciones', component: ValoracionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
 
+  { path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'proveedores', component: ProveedoresComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'insumos', component: InsumosComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'compras', component: ComprasComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'ventas', component: VentasComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
+  { path: 'productos', component: ProductosComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
 ];
+

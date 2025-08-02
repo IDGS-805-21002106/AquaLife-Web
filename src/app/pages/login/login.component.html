@@ -1,42 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img src="assets/LogoAL.png" alt="AquaLife Logo">
-    </a>
-    <div class="collapse navbar-collapse justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cotizaciones" routerLinkActive="active">Cotizaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sobre-nosotros" routerLinkActive="active">Sobre nosotros</a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-flex">
-      <button class="btn btn-login">Log in</button>
-    </div>
-  </div>
-</nav>
+<app-navbar></app-navbar>
+
 
 <section class="login-section">
   <div class="container d-flex justify-content-center">
     <div class="login-box shadow p-4 rounded">
       <h3 class="text-center mb-4">Iniciar Sesión</h3>
-      <form>
+      <form (ngSubmit)="login()">
         <div class="mb-3">
           <label for="email">Correo electrónico:</label>
-          <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" />
+          <input type="email" class="form-control" id="email" [(ngModel)]="correo" name="correo" placeholder="ejemplo@correo.com" required />
         </div>
         <div class="mb-3">
           <label for="password">Contraseña:</label>
-          <input type="password" class="form-control" id="password" placeholder="********" />
+          <input type="password" class="form-control" id="password" [(ngModel)]="contrasena" name="contrasena" placeholder="********" required />
         </div>
         <button type="submit" class="btn btn-success btn-login-form w-100">Ingresar</button>
       </form>
+
     </div>
   </div>
 </section>

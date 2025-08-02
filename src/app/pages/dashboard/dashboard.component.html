@@ -1,26 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img src="assets/LogoAL.png" alt="AquaLife Logo">
-    </a>
-    <div class="collapse navbar-collapse justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-flex">
-      <button class="btn btn-login">Log in</button>
-    </div>
-  </div>
-</nav>
+<app-navbar></app-navbar>
+
 
 <section class="dashboard-section">
   <div class="container">
@@ -28,46 +7,47 @@
     <div class="row g-4">
 
       <div class="col-md-4">
-        <div class="dashboard-card">
-          <h5>Ventas del mes</h5>
-          <p>$15,200</p>
-        </div>
-      </div>
+  <div class="dashboard-card">
+    <h5>Ventas del mes</h5>
+    <p>${{ ventasMes }}</p>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <div class="dashboard-card">
-          <h5>Ganancias netas</h5>
-          <p>$8,750</p>
-        </div>
-      </div>
+<div class="col-md-4">
+  <div class="dashboard-card">
+    <h5>Ganancias netas</h5>
+    <p>${{ gananciasNetas }}</p>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <div class="dashboard-card">
-          <h5>Compras realizadas</h5>
-          <p>12 compras</p>
-        </div>
-      </div>
+<div class="col-md-4">
+  <div class="dashboard-card">
+    <h5>Compras realizadas</h5>
+    <p>{{ comprasRealizadas }} compras</p>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <div class="dashboard-card">
-          <h5>Cotizaciones pendientes</h5>
-          <p>5 solicitudes</p>
-        </div>
-      </div>
+<div class="col-md-4">
+  <div class="dashboard-card">
+    <h5>Cotizaciones pendientes</h5>
+    <p>{{ cotizacionesPendientes }} solicitudes</p>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <div class="dashboard-card">
-          <h5>Productos en stock</h5>
-          <p>22 kits</p>
-        </div>
-      </div>
+<div class="col-md-4">
+  <div class="dashboard-card">
+    <h5>Productos en stock</h5>
+    <p>{{ productosEnStock }} productos</p>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <div class="dashboard-card alert-card">
-          <h5>Insumos bajos</h5>
-          <p>3 insumos</p>
-        </div>
-      </div>
+<div class="col-md-4">
+  <div class="dashboard-card alert-card">
+    <h5>Insumos bajos</h5>
+    <p>{{ insumosBajos }} insumos</p>
+  </div>
+</div>
+
 
     </div>
   </div>
