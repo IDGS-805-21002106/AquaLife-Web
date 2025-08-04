@@ -1,28 +1,41 @@
 <app-navbar></app-navbar>
 
+<section class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Perfil de Usuario</h2>
+      <div *ngIf="usuario; else cargando">
+        <form (ngSubmit)="guardarCambios()" #perfilForm="ngForm">
+          <div class="mb-3">
+            <label>Nombre completo:</label>
+            <input class="form-control" [(ngModel)]="usuario.nombreCompleto" name="nombre" required />
+          </div>
+          <div class="mb-3">
+            <label>Correo:</label>
+            <input class="form-control" [(ngModel)]="usuario.correo" name="correo" type="email" required />
+          </div>
+          <div class="mb-3">
+            <label>Contraseña:</label>
+            <input class="form-control" [(ngModel)]="usuario.contrasena" name="contrasena" type="password" required />
+          </div>
+          <div class="mb-3">
+            <label>Rol:</label>
+            <input class="form-control" [value]="usuario.rol" disabled />
+          </div>
 
-<section class="perfil-section">
-  <div class="container">
-    <h2 class="mb-4">Mi perfil</h2>
-    <div class="row align-items-start">
-      <div class="col-md-8">
-        <p><strong>Nombre:</strong></p>
-        <p><strong>Apellido Paterno:</strong></p>
-        <p><strong>Apellido Materno:</strong></p>
-        <p><strong>Fecha de Nacimiento:</strong></p>
-        <p><strong>Correo Electrónico:</strong></p>
-        <p><strong>Teléfono:</strong></p>
-        <button class="btn btn-outline-secondary mt-3">Editar Información</button>
+          <button type="submit" class="btn btn-success">Guardar cambios</button>
+        </form>
       </div>
 
-      <div class="col-md-4 text-center">
-        <div class="avatar-box mx-auto mb-3">
-          <i class="bi bi-person-circle avatar-icon"></i>
-        </div>
-        <p><strong>Nombre del usuario</strong></p>
-        <p>Correo electrónico</p>
-        <p>Teléfono</p>
-        <button class="btn btn-outline-dark mt-2">Cerrar sesión</button>
+      <ng-template #cargando>
+        <p>Cargando datos...</p>
+      </ng-template>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <img src="../../../assets/avatar1.png" alt="Avatar" class="rounded-circle mb-3" width="150" />
+      <div>
+        <button class="btn btn-danger w-100" (click)="cerrarSesion()">Cerrar sesión</button>
       </div>
     </div>
   </div>

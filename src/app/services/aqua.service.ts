@@ -167,4 +167,9 @@ login(datos: any): Observable<any> {
 }
 
 
+getUsuarioPorCorreo(correo: string) {
+  return this.http.get<any>(`${this.apiUrl}Aqua/ObtenerUsuarioPorCorreo/${correo}`);
+}
+
+
 }
