@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AquaService } from '../../services/aqua.service';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+
 
 
 @Component({
   selector: 'app-ventas',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, NavbarComponent],
+  imports: [RouterModule, CommonModule, FormsModule, NavbarComponent, NgIf, FooterComponent],
   templateUrl: './ventas.component.html',
   styleUrl: './ventas.component.css'
 })

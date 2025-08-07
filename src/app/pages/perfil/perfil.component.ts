@@ -5,12 +5,13 @@ import { AquaService } from '../../services/aqua.service';
 import { AuthService } from '../../services/auth.service';
 import { NgIf,} from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [RouterModule, NavbarComponent, NgIf, FormsModule],
+  imports: [RouterModule, NavbarComponent, NgIf, FormsModule, FooterComponent],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })

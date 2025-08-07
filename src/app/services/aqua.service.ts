@@ -12,6 +12,8 @@ export class AquaService {
 
   constructor(private http: HttpClient) { }
 
+
+  // Usuarios
  getUsuarios(): Observable<any[]> {
   const token = localStorage.getItem('token');
   return this.http.get<any[]>(`${this.apiUrl}Aqua/ListaUsuarios`, {
@@ -24,6 +26,10 @@ export class AquaService {
   postUsuario(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}Aqua/AgregarUsuario`, data);
   }
+
+  postUsuario2(usuario: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}Auth/Registrar`, usuario);
+}
 
   putUsuario(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}Aqua/ModificarUsuario/${id}`, data);
@@ -41,7 +47,19 @@ export class AquaService {
   postCotizacion(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}Aqua/AgregarCotizacion`, data); 
   }
+  deleteCotizacion(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}Aqua/EliminarCotizacion/${id}`);
+  }
+  
+  putCotizacion(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}Aqua/ModificarCotizacion/${id}`, data);
+  }
 
+  getCotizacionesPorUsuario(usuarioId: number) {
+  return this.http.get<any[]>(`https://localhost:7278/api/Aqua/Usuario/${usuarioId}`);
+}
+
+  
   // Productos
  
 
@@ -135,6 +153,15 @@ deleteVenta(id: number): Observable<any> {
   deleteCompra(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}Aqua/EliminarCompra/${id}`);
   }
+
+  // Inventario
+getInventario(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}Aqua/ListaInventario`);
+}
+
+producirProducto(data: { productoId: number, cantidad: number }): Observable<any> {
+  return this.http.post(`${this.apiUrl}Aqua/ProducirProducto`, data);
+}
 
   // Dashboard
 getVentasDelMes() {

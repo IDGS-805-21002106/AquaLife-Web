@@ -1,54 +1,48 @@
 <app-navbar></app-navbar>
 
-
 <section class="dashboard-section">
   <div class="container">
     <h3 class="mb-4 text-center">Panel de Control</h3>
     <div class="row g-4">
 
       <div class="col-md-4">
-  <div class="dashboard-card">
-    <h5>Ventas del mes</h5>
-    <p>${{ ventasMes }}</p>
-  </div>
-</div>
+        <div class="dashboard-card">
+          <h5>Ventas del mes</h5>
+          <p>${{ ventasMes }}</p>
+        </div>
+      </div>
 
-<div class="col-md-4">
-  <div class="dashboard-card">
-    <h5>Ganancias netas</h5>
-    <p>${{ gananciasNetas }}</p>
-  </div>
-</div>
+      <div class="col-md-4">
+        <div class="dashboard-card">
+          <h5>Ganancias netas</h5>
+          <p>${{ gananciasNetas }}</p>
+        </div>
+      </div>
 
-<div class="col-md-4">
-  <div class="dashboard-card">
-    <h5>Compras realizadas</h5>
-    <p>{{ comprasRealizadas }} compras</p>
-  </div>
-</div>
+      <div class="col-md-4">
+        <div class="dashboard-card">
+          <h5>Compras realizadas</h5>
+          <p>{{ comprasRealizadas }} compras</p>
+        </div>
+      </div>
 
-<div class="col-md-4">
-  <div class="dashboard-card">
-    <h5>Cotizaciones pendientes</h5>
-    <p>{{ cotizacionesPendientes }} solicitudes</p>
-  </div>
-</div>
+      <div class="col-md-4">
+        <div class="dashboard-card">
+          <h5>Cotizaciones pendientes</h5>
+          <p>{{ cotizacionesPendientes }} solicitudes</p>
+        </div>
+      </div>
 
-<div class="col-md-4">
-  <div class="dashboard-card">
-    <h5>Productos en stock</h5>
-    <p>{{ productosEnStock }} productos</p>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="dashboard-card alert-card">
-    <h5>Insumos bajos</h5>
-    <p>{{ insumosBajos }} insumos</p>
-  </div>
-</div>
-
+      <div class="col-md-4">
+        <div class="dashboard-card">
+          <h5>Productos en stock</h5>
+          <p>{{ productosEnStock }} unidades</p>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<section class="carrito-section">
+  <div class="container">
+    <h3 class="mb-4 text-center">Historial de Cotizaciones</h3>
+
+    <div class="historial-box table-responsive">
+      <table class="table table-bordered" *ngIf="cotizaciones.length > 0">
+        <thead class="table-header-green text-white">
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of cotizaciones">
+            <td>{{ c.productoNombre }}</td>
+            <td>${{ c.precioFinal }}</td>
+            <td>{{ c.fecha | date: 'yyyy-MM-dd' }}</td>
+            <td>
+              <span class="badge bg-success" *ngIf="c.estadoCotizacion === 'aprobada'">Aprobada</span>
+              <span class="badge bg-warning text-dark" *ngIf="c.estadoCotizacion === 'pendiente'">Pendiente</span>
+              <span class="badge bg-secondary" *ngIf="c.estadoCotizacion !== 'pendiente' && c.estadoCotizacion !== 'aprobada'">{{ c.estadoCotizacion }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="cotizaciones.length === 0" class="text-center text-muted">
+        No tienes cotizaciones todavía.
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+

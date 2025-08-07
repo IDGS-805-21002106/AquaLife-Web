@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Inventario de Productos Terminados</h2>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5>Producir Producto</h5>
+      <div class="row g-2">
+        <div class="col-md-6">
+          <select class="form-select" [(ngModel)]="produccion.productoId">
+            <option [ngValue]="0" disabled selected>Seleccione un producto</option>
+            <option *ngFor="let p of productos" [ngValue]="p.id">{{ p.nombre }}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <input type="number" class="form-control" [(ngModel)]="produccion.cantidad" min="1" placeholder="Cantidad">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary w-100" (click)="producir()">Producir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered shadow">
+    <thead class="table-dark">
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad en Inventario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inventario">
+        <td>{{ item.producto.nombre }}</td>
+        <td>{{ item.cantidad }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<app-footer></app-footer>
+

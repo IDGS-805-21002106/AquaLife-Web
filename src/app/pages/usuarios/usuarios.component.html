@@ -50,8 +50,9 @@
                 <td>{{ u.correo }}</td>
                 <td>{{ u.rol }}</td>
                 <td>
-                  <button class="btn btn-sm btn-outline-primary me-2" (click)="editarUsuario(u)">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="eliminarUsuario(u.id)">Eliminar</button>
+                  <button class="btn btn-warning btn-sm" (click)="editarUsuario(u)">Editar</button>
+                  <p></p>
+                  <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(u.id)">Eliminar</button>
                 </td>
               </tr>
             </tbody>
@@ -61,3 +62,6 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,17 @@
+.footer-custom {
+  background-color: #f3eef7;
+  border-top: 1px solid #ddd;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-links a {
+  color: #00c275;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

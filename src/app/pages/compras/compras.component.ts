@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'app-compras',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, NavbarComponent],
+  imports: [RouterModule, CommonModule, FormsModule, NavbarComponent, FooterComponent],
   templateUrl: './compras.component.html',
   styleUrl: './compras.component.css'
 })

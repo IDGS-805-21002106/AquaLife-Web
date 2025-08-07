@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 interface Movimiento {
@@ -21,7 +22,7 @@ interface Movimiento {
 @Component({
   selector: 'app-insumos',
   standalone: true,
-  imports: [RouterModule, FormsModule, DecimalPipe, NgFor, NgIf, NavbarComponent],
+  imports: [RouterModule, FormsModule, DecimalPipe, NgFor, NgIf, NavbarComponent, FooterComponent],
   templateUrl: './insumos.component.html',
   styleUrls: ['./insumos.component.css']
 })

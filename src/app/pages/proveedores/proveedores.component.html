@@ -54,8 +54,8 @@
                 <td>{{ p.correo }}</td>
                 <td>{{ p.ubicacion }}</td>
                 <td>
-                  <button class="btn btn-sm btn-outline-primary me-2" (click)="editarProveedor(p)">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="eliminarProveedor(p.id)">Eliminar</button>
+                  <button class="btn btn-info btn-sm" (click)="editarProveedor(p)">Editar</button> <p></p>
+                  <button class="btn btn-danger btn-sm" (click)="eliminarProveedor(p.id)">Eliminar</button>
                 </td>
               </tr>
               <tr *ngIf="proveedores.length === 0">
@@ -68,3 +68,6 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h2>Gestión de Cotizaciones</h2>
+
+  <div *ngIf="cotizaciones.length === 0" class="alert alert-info mt-4">
+    No hay cotizaciones registradas.
+  </div>
+
+  <table class="table table-bordered table-hover mt-4" *ngIf="cotizaciones.length > 0">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cot of cotizaciones">
+        <td>{{ cot.nombre }} {{ cot.apellidoPaterno }} {{ cot.apellidoMaterno }}</td>
+        <td>{{ cot.correo }}</td>
+        <td>{{ cot.productoNombre }}</td>
+        <td>${{ cot.precioFinal | number:'1.2-2' }}</td>
+        <td>{{ cot.estadoCotizacion || 'Pendiente' }}</td>
+        <td>
+          <button class="btn btn-success btn-sm me-2" (click)="aprobarCotizacion(cot)">Aprobar</button>
+          <button class="btn btn-danger btn-sm" (click)="cancelarCotizacion(cot.id)">Cancelar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-footer></app-footer>
+

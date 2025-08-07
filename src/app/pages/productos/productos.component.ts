@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 interface Producto {
@@ -31,7 +32,7 @@ interface Insumo {
 @Component({
   selector: 'app-productos',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule, NavbarComponent],
+  imports: [RouterModule, FormsModule, CommonModule, NavbarComponent, FooterComponent],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })

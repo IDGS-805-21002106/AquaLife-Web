@@ -81,8 +81,8 @@
                 <td>${{ v.total }}</td>
                 <td>{{ v.fecha | date: 'yyyy-MM-dd' }}</td>
                 <td>
-                  <button class="btn btn-sm btn-outline-primary" (click)="editar(v)">Editar</button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="eliminar(v.id)">Eliminar</button>
+                  <button class="btn btn-info btn-sm" (click)="editar(v)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="eliminar(v.id)">Eliminar</button>
                 </td>
               </tr>
             </tbody>
@@ -92,3 +92,6 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>
+

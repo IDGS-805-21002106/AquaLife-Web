@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
-
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports:[NavbarComponent],
+  imports: [NavbarComponent, FooterComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   comprasRealizadas: number = 0;
   cotizacionesPendientes: number = 0;
   productosEnStock: number = 0;
-  insumosBajos: number = 0;
 
   constructor(private aquaService: AquaService) {}
 
@@ -25,6 +24,5 @@ export class DashboardComponent implements OnInit {
     this.aquaService.getComprasRealizadas().subscribe(data => this.comprasRealizadas = data);
     this.aquaService.getCotizacionesPendientes().subscribe(data => this.cotizacionesPendientes = data);
     this.aquaService.getProductosEnStock().subscribe(data => this.productosEnStock = data);
-    this.aquaService.getInsumosBajos().subscribe(data => this.insumosBajos = data);
   }
 }

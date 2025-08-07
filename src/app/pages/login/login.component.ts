@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,12 @@ export class LoginComponent {
   correo: string = '';
   contrasena: string = '';
 
+  registro = {
+  nombreCompleto: '',
+  correo: '',
+  contrasena: ''
+};
+
   constructor(private servicio: AquaService, private router: Router) {}
 
   login() {
@@ -26,12 +33,30 @@ export class LoginComponent {
     };
 
     this.servicio.login(datos).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.token);
-        alert('Login exitoso');
-        this.router.navigate(['/inicio']); 
-      },
-      error: () => alert('Credenciales inválidas')
-    });
+  next: (res) => {
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('usuario', JSON.stringify(res.usuario)); 
+    alert('Login exitoso');
+    this.router.navigate(['/inicio']); 
+  },
+  error: () => alert('Credenciales inválidas')
+});
   }
+
+  registrar() {
+  this.servicio.postUsuario2(this.registro).subscribe({
+    next: () => {
+      alert('Usuario registrado con éxito. Ahora puedes iniciar sesión.');
+      const modal = document.getElementById('modalRegistro');
+      const modalInstance = bootstrap.Modal.getInstance(modal);
+      modalInstance.hide();
+
+      this.registro = { nombreCompleto: '', correo: '', contrasena: '' };
+    },
+    error: (error) => {
+      console.error('Error al registrar usuario:', error);
+      alert(error.error || 'Error al registrar');
+    }
+  });
+}
 }
