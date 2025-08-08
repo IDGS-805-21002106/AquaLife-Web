@@ -26,9 +26,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'faq', component: FaqComponent },
 
-  { path: 'cotizaciones', component: CotizacionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Cliente'] } },
-  { path: 'perfil', component: PerfilComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Cliente'] } },
-  { path: 'valoraciones', component: ValoracionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Cliente'] } },
+  { path: 'cotizaciones', component: CotizacionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
+  { path: 'perfil', component: PerfilComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
+  { path: 'valoraciones', component: ValoracionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] } },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
   { path: 'proveedores', component: ProveedoresComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
   { path: 'productos', component: ProductosComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] } },
   {path: 'gestion-cotizaciones', component: GestionCotizacionesComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] }},
-  {path: 'carrito', component: CarritoComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Cliente'] }},
+  {path: 'carrito', component: CarritoComponent, canActivate: [RoleGuard], data: { expectedRoles: ['cliente'] }},
   {path: 'inventario', component: InventarioComponent, canActivate: [RoleGuard], data: { expectedRoles: ['Administrador'] }},
 
 ];

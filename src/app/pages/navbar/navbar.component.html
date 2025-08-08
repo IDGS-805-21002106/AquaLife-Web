@@ -26,16 +26,16 @@
       <li class="nav-item"><a class="nav-link" routerLink="/faq">Preguntas frecuentes</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a></li>
 
-      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
       </li>
 
-      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/carrito">Carrito</a>
       </li>
 
 
-      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/perfil">Perfil</a>
       </li>
 
@@ -63,13 +63,17 @@
         <a class="nav-link" routerLink="/proveedores">Proveedores</a>
       </li>
       <li class="nav-item" *ngIf="role === 'Administrador'">
-        <a class="nav-link" routerLink="/ventas">Ventas</a>
+        <a class="nav-link" routerLink="/insumos">Insumos</a>
       </li>
       <li class="nav-item" *ngIf="role === 'Administrador'">
         <a class="nav-link" routerLink="/compras">Compras</a>
       </li>
       <li class="nav-item" *ngIf="role === 'Administrador'">
         <a class="nav-link" routerLink="/productos">Productos</a>
+      </li>
+      <li class="nav-item" *ngIf="role === 'Administrador'">
+        <a class="nav-link" routerLink="/inventario">Inventario</a>
+
       </li>
     </ul>
   </div>

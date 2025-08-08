@@ -41,7 +41,7 @@
     <label>Producto:</label>
     <select class="form-control" [(ngModel)]="productoSeleccionadoId" name="producto" required>
       <option value="">Selecciona un producto</option>
-        <option *ngFor="let p of productos" [value]="p.id">{{ p.nombre }} - ${{ p.precio | number:'1.2-2' }}</option>
+        <option *ngFor="let p of productos" [value]="p.id">{{ p.nombre }}</option>
     </select>
   </div>
 
