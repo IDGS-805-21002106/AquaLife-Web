@@ -47,6 +47,11 @@ export class CotizacionesComponent implements OnInit {
       next: (data) => this.productos = data,
       error: () => alert('Error al cargar productos')
     });
+
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    if (usuario?.correo) {
+      this.cotizacion.correo = usuario.correo;
+    }
   }
 
   mostrarModal() {
@@ -62,50 +67,50 @@ export class CotizacionesComponent implements OnInit {
   }
 
   enviarCotizacion() {
-  const producto = this.productos.find(p => p.id === Number(this.productoSeleccionadoId));
-  if (!producto) return;
+    const producto = this.productos.find(p => p.id === Number(this.productoSeleccionadoId));
+    if (!producto) return;
 
-  const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
 
-  if (!usuario.id) {
-    alert('Debes iniciar sesión para enviar una cotización');
-    return;
-  }
-
-  const nuevaCotizacion = {
-    nombre: this.cotizacion.nombre,
-    apellidoPaterno: this.cotizacion.apellidoPaterno,
-    apellidoMaterno: this.cotizacion.apellidoMaterno,
-    correo: this.cotizacion.correo,
-    telefono: this.cotizacion.telefono,
-    estado: this.cotizacion.estado,
-    ciudad: this.cotizacion.ciudad,
-    productoNombre: producto.nombre,
-    precioFinal: this.precioCalculado,
-    estadoCotizacion: "Pendiente",
-    productoId: producto.id,
-    usuarioId: usuario.id 
-  };
-
-  this.servicio.postCotizacion(nuevaCotizacion).subscribe({
-    next: () => {
-      alert('Cotización enviada con éxito');
-      this.limpiarFormulario();
-    },
-    error: (error) => {
-      console.error('Error al enviar la cotización:', error);
-      alert('Error al enviar la cotización');
+    if (!usuario.id) {
+      alert('Debes iniciar sesión para enviar una cotización');
+      return;
     }
-  });
-}
 
+    const nuevaCotizacion = {
+      nombre: this.cotizacion.nombre,
+      apellidoPaterno: this.cotizacion.apellidoPaterno,
+      apellidoMaterno: this.cotizacion.apellidoMaterno,
+      correo: usuario.correo, 
+      telefono: this.cotizacion.telefono,
+      estado: this.cotizacion.estado,
+      ciudad: this.cotizacion.ciudad,
+      productoNombre: producto.nombre,
+      precioFinal: this.precioCalculado,
+      estadoCotizacion: "Pendiente",
+      productoId: producto.id,
+      usuarioId: usuario.id 
+    };
+
+    this.servicio.postCotizacion(nuevaCotizacion).subscribe({
+      next: () => {
+        alert('Cotización enviada con éxito');
+        this.limpiarFormulario();
+        this.cotizacion.correo = usuario.correo;
+      },
+      error: (error) => {
+        console.error('Error al enviar la cotización:', error);
+        alert('Error al enviar la cotización');
+      }
+    });
+  }
 
   limpiarFormulario() {
     this.cotizacion = {
       nombre: '',
       apellidoPaterno: '',
       apellidoMaterno: '',
-      correo: '',
+      correo: '', 
       telefono: '',
       estado: '',
       ciudad: '',

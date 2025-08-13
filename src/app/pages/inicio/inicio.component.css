@@ -1,61 +1,54 @@
 body {
-  background-color: #f3eef7;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #333;
+  background-color:rgb(191, 218, 218)
 }
 
-.navbar-custom {
-  background-color: #f3eef7;
-  padding: 1rem 2rem;
+.hero-modular {
+  border-bottom: 1px solid #ffffff;
 }
 
-.navbar-brand img {
-  height: 40px;
-}
-
-.nav-link {
-  font-weight: 600;
-  color: #000;
-  margin: 0 15px;
-}
-
-.nav-link.active {
-  border-bottom: 3px solid #00c275;
-  color: #000;
-}
-
-.btn-login {
-  background-color: #00c275;
-  color: white;
-  border-radius: 50px;
-  padding: 6px 20px;
-  font-weight: 500;
-  border: none;
-}
-
-.hero-text {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 1.25rem;
-  letter-spacing: 1px;
-  font-weight: 400;
-  color: #222;
-}
-
-.placeholder-img {
-  background-color: #e8e0ee;
-  height: 280px;
-  margin: 40px auto;
-  border-radius: 20px;
-  max-width: 900px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #b1a9b9;
-  font-size: 1.5rem;
-}
-.placeholder-img img {
-  width: 100%;
-  height: 100%;
+.object-fit-cover {
   object-fit: cover;
-  border-radius: 20px;
+}
+
+.rounded-4 {
+  border-radius: 16px;
+}
+
+.btn {
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[class^="col"] > div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[class^="col"] > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+.shadow-sm {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+section .text-warning {
+  font-size: 1.1rem;
+}
+
+section .rounded-4 {
+  border-radius: 15px;
 }

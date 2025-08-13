@@ -1,10 +1,17 @@
 <app-navbar></app-navbar>
 
-
 <section class="login-section">
-  <div class="container d-flex justify-content-center">
+  <div class="overlay"></div>
+  
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="login-box shadow p-4 rounded">
+      
+      <div class="text-center mb-4">
+        <img src="assets/LogoAL.png" alt="Logo AquaLife" class="login-logo">
+      </div>
+
       <h3 class="text-center mb-4">Iniciar Sesión</h3>
+
       <form (ngSubmit)="login()">
         <div class="mb-3">
           <label for="email">Correo electrónico:</label>
@@ -16,39 +23,40 @@
         </div>
         <button type="submit" class="btn btn-success btn-login-form w-100">Ingresar</button>
       </form>
-      <button class="btn btn-link mt-2 w-100" data-bs-toggle="modal" data-bs-target="#modalRegistro">
-  ¿No tienes cuenta? Regístrate aquí
-</button>
 
-<div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form (ngSubmit)="registrar()">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalRegistroLabel">Registro de Cliente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="nombreCompleto">Nombre Completo:</label>
-            <input type="text" class="form-control" id="nombreCompleto" [(ngModel)]="registro.nombreCompleto" name="nombreCompleto" required />
+      <button class="btn btn-link mt-2 w-100" data-bs-toggle="modal" data-bs-target="#modalRegistro">
+        ¿No tienes cuenta? Regístrate aquí
+      </button>
+
+      <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form (ngSubmit)="registrar()">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalRegistroLabel">Registro de Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="nombreCompleto">Nombre Completo:</label>
+                  <input type="text" class="form-control" id="nombreCompleto" [(ngModel)]="registro.nombreCompleto" name="nombreCompleto" required />
+                </div>
+                <div class="mb-3">
+                  <label for="correoRegistro">Correo:</label>
+                  <input type="email" class="form-control" id="correoRegistro" [(ngModel)]="registro.correo" name="correoRegistro" required />
+                </div>
+                <div class="mb-3">
+                  <label for="contrasenaRegistro">Contraseña:</label>
+                  <input type="password" class="form-control" id="contrasenaRegistro" [(ngModel)]="registro.contrasena" name="contrasenaRegistro" required />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success w-100">Registrarse</button>
+              </div>
+            </form>
           </div>
-          <div class="mb-3">
-            <label for="correoRegistro">Correo:</label>
-            <input type="email" class="form-control" id="correoRegistro" [(ngModel)]="registro.correo" name="correoRegistro" required />
-          </div>
-          <div class="mb-3">
-            <label for="contrasenaRegistro">Contraseña:</label>
-            <input type="password" class="form-control" id="contrasenaRegistro" [(ngModel)]="registro.contrasena" name="contrasenaRegistro" required />
-          </div>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success w-100">Registrarse</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
 
     </div>
   </div>

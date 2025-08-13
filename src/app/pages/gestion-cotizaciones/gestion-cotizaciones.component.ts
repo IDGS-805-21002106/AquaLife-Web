@@ -41,20 +41,17 @@ export class GestionCotizacionesComponent implements OnInit {
   }
 
   const ventaDTO = {
-  nombreCliente: cot.nombre + ' ' + cot.apellidoPaterno,
-  fecha: new Date(),
-  total: cot.precioFinal,
-  detallesVenta: [
-    {
-      productoId: cot.productoId,  
-      cantidad: 1,
-      precioUnitario: cot.precioFinal
-    }
-  ]
-};
-
-
-  console.log('Enviando ventaDTO:', ventaDTO); 
+    nombreCliente: cot.nombre + ' ' + cot.apellidoPaterno,
+    fecha: new Date(),
+    total: cot.precioFinal,
+    detallesVenta: [
+      {
+        productoId: cot.productoId,  
+        cantidad: 1,
+        precioUnitario: cot.precioFinal
+      }
+    ]
+  };
 
   this.servicio.postVenta(ventaDTO).subscribe({
     next: () => {
@@ -65,6 +62,15 @@ export class GestionCotizacionesComponent implements OnInit {
 
       this.servicio.putCotizacion(cot.id, cotizacionActualizada).subscribe({
         next: () => {
+          this.servicio.enviarCorreoCotizacion({
+            para: cot.correo,
+            asunto: 'Cotización aprobada - AquaLife',
+            cuerpo: `<h3>Hola ${cot.nombre}</h3><p>Tu cotización para el producto <strong>${cot.productoNombre}</strong> ha sido aprobada.</p><p>Precio final: <strong>$${cot.precioFinal}</strong></p><p>¡Gracias por confiar en nosotros!</p>`
+          }).subscribe({
+            next: () => console.log('Correo de aprobación enviado'),
+            error: () => console.error('Error al enviar correo de aprobación')
+          });
+
           alert('Cotización aprobada y venta registrada');
           this.cargarCotizaciones();
         },
@@ -72,27 +78,36 @@ export class GestionCotizacionesComponent implements OnInit {
       });
     },
     error: (error) => {
-  console.error('Error al registrar venta:', error);
-
-  if (error.error && typeof error.error === 'string') {
-    alert(error.error);
-  } else {
-    alert('Error al registrar venta');
-  }
-}
+      console.error('Error al registrar venta:', error);
+      alert(error.error && typeof error.error === 'string' ? error.error : 'Error al registrar venta');
+    }
   });
 }
 
 
 
 
+
   cancelarCotizacion(id: number) {
-    this.servicio.deleteCotizacion(id).subscribe({
-      next: () => {
-        alert('Cotización eliminada');
-        this.cargarCotizaciones();
-      },
-      error: () => alert('Error al eliminar cotización')
-    });
-  }
+  const cot = this.cotizaciones.find(c => c.id === id);
+  if (!cot) return;
+
+  this.servicio.deleteCotizacion(id).subscribe({
+    next: () => {
+      this.servicio.enviarCorreoCotizacion({
+        para: cot.correo,
+        asunto: 'Cotización cancelada - AquaLife',
+        cuerpo: `<h3>Hola ${cot.nombre}</h3><p>Lamentamos informarte que tu cotización para el producto <strong>${cot.productoNombre}</strong> ha sido cancelada.</p>`
+      }).subscribe({
+        next: () => console.log('Correo de cancelación enviado'),
+        error: () => console.error('Error al enviar correo de cancelación')
+      });
+
+      alert('Cotización eliminada');
+      this.cargarCotizaciones();
+    },
+    error: () => alert('Error al eliminar cotización')
+  });
+}
+
 }

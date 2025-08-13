@@ -36,6 +36,18 @@ body {
   padding: 50px 20px;
 }
 
+.title-box {
+  background-color: #00c275;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
+.title-box h2 {
+  margin: 0;
+  color: white; /* Asegura que el texto dentro del h2 también sea blanco */
+}
+
 .form-box {
   background-color: #dddddd;
   border-radius: 10px;

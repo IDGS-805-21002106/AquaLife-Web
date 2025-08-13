@@ -59,3 +59,20 @@ body {
   margin: 0;
   color: #444;
 }
+
+.title-box {
+  background-color: #00c275;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; 
+}
+
+.title-box h2 {
+  margin: 0;
+  color: white; 
+}
+
+.table-header-green {
+  background-color: #00c275;
+}

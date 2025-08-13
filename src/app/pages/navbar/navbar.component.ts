@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit {
   constructor(public authService: AuthService) {}
 
   logout() {
@@ -20,5 +20,19 @@ export class NavbarComponent {
   get role(): string | null {
     return this.authService.getUserRole();
   }
-}
 
+  ngAfterViewInit() {
+    document.querySelectorAll('.offcanvas').forEach(el => {
+      el.addEventListener('shown.bs.offcanvas', () => {
+        document.body.style.overflow = 'hidden';
+      });
+
+      el.addEventListener('hidden.bs.offcanvas', () => {
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '0px';
+        document.body.style.paddingLeft = '0px';
+        document.body.classList.remove('offcanvas-backdrop', 'show');
+      });
+    });
+  }
+}

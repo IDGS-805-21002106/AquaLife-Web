@@ -31,8 +31,9 @@ body {
   font-weight: 500;
   border: none;
 }
-.insumos-section {
-  padding: 50px 20px;
+
+.proveedores-section {
+  padding: 60px 20px;
 }
 
 .form-box {
@@ -58,24 +59,25 @@ body {
 .btn-success:hover {
   background-color: #00a85f;
 }
-.insumos-section {
-  padding: 50px 20px;
+
+.title-box {
+  background-color: #00c275;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; 
 }
 
-.form-box {
-  background-color: #dddddd;
+.title-box h2 {
+  margin: 0;
+  color: white; 
+}
+
+.insumos-section {
+  padding: 50px 20px;
 }
 
 .card {
   background-color: #eeeeee;
   border-radius: 10px;
-}
-
-.table-header-green {
-  background-color: #00c275;
-}
-
-.btn-success {
-  background-color: #00c275;
-  border: none;
 }

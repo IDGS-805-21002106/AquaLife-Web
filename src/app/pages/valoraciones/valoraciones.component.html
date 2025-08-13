@@ -1,55 +1,39 @@
 <app-navbar></app-navbar>
 
-
-<section class="valoraciones-section">
-  <div class="container">
-    <h2 class="text-center mb-5">Valoraciones de Clientes</h2>
-
-    <div class="row g-4">
-      <div class="col-md-4" *ngFor="let valoracion of [1,2,3]">
-        <div class="card valoracion-card shadow-sm">
-          <div class="card-body">
-            <div class="stars mb-2">
-              
-            </div>
-            <p class="comentario">
-              AquaLife ha sido una solución increíble para cuidar mis plantas y ahorrar agua. ¡Lo recomiendo totalmente!
-            </p>
-            <p class="autor"> Mariana G.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card valoracion-card shadow-sm">
-          <div class="card-body">
-            <div class="stars mb-2">
-              
-            </div>
-            <p class="comentario">
-              El sistema funciona de maravilla. La instalación fue sencilla y el soporte técnico excelente.
-            </p>
-            <p class="autor"> Carlos P.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card valoracion-card shadow-sm">
-          <div class="card-body">
-            <div class="stars mb-2">
-              
-            </div>
-            <p class="comentario">
-              Es una buena inversión, aunque me gustaría ver más opciones en la app móvil.
-            </p>
-            <p class="autor">– Laura M.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-5">
-      <button class="btn btn-success">Agregar valoración</button>
-    </div>
+<div class="container mt-4">
+  <div class="title-box text-center mb-4">
+    <h2>Deja tu valoración</h2>
   </div>
+
+  <form (ngSubmit)="enviarValoracion()" #form="ngForm">
+    <div class="mb-3">
+      <label>Calificación:</label>
+      <select class="form-control" [(ngModel)]="nuevaValoracion.calificacion" name="calificacion" required>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Comentario:</label>
+      <textarea class="form-control" [(ngModel)]="nuevaValoracion.comentario" name="comentario" required></textarea>
+    </div>
+
+    <button class="btn btn-primary w-100">Enviar</button>
+  </form>
+
+  <hr>
+
+  <h3>Valoraciones recientes</h3>
+  <div *ngFor="let v of valoracionesPublicas" class="border p-3 mb-2">
+    <strong>{{ v.usuario?.nombreCompleto || 'Usuario' }}</strong>
+    <span>({{ v.calificacion }} ⭐)</span>
+    <p>{{ v.comentario }}</p>
+    <small>{{ v.fecha | date:'short' }}</small>
+  </div>
+</div>
+
+<app-footer></app-footer>

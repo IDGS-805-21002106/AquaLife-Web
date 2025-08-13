@@ -1,24 +1,132 @@
 <app-navbar></app-navbar>
 
-<section>
-  <div class="hero-text">
-    <p>RECOLECCIÓN DE AGUA PLUVIAL PARA EL CUIDADO DE TUS PLANTAS</p>
+<div id="carouselInicio" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../../../assets/Banner1.png" class="d-block w-100" alt="Banner 1">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/Banner2.png" class="d-block w-100" alt="Banner 2">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/Banner3.png" class="d-block w-100" alt="Banner 3">
+    </div>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselInicio" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselInicio" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
 
-  <div class="placeholder-img">
-    <img src="../../../assets/cultivo2.jpeg" alt="">
+<section class="hero-modular py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="p-5 h-100 rounded-4" style="background-color: #005227;">
+          <h1 class="text-white mb-4">SISTEMA DE RECOLECCIÓN DE AGUA PLUVIAL</h1>
+          <p class="text-white-50 mb-4">
+            Maximiza el uso del agua de lluvia con nuestra tecnología sostenible y automatizada.
+          </p>
+          <button class="btn btn-light" style="color: #005227;">Conocer más</button>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="h-100 rounded-4 overflow-hidden">
+          <img src="../../../assets/cultivo.jpg" alt="Cultivo" class="img-fluid w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-
-  <div class="hero-text">
-  <p>Tnemos el mejor sistema de recoleccion de agua de lluvia
-  para el cuidado de tus plantas, con un sistema de riego automatizado que te permite ahorrar agua y cuidar tus plantas de manera eficiente.</p>
-
-  <p>Con AquaLife, puedes disfrutar de un jardín saludable y sostenible, mientras contribuyes al cuidado del medio ambiente.</p>
-  <p>¡Únete a la revolución del riego inteligente y transforma tu jardín hoy mismo!</p>
+<section class="py-5" style="background-color: #dad8d8;">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="p-4 h-100 rounded-4" style="background-color: #f1f1f1; border: 2px solid #005227;">
+          <h3 class="mb-3" style="color: #005227;">Ahorro Inteligente</h3>
+          <p style="color: #333;">Reduce hasta un 80% el consumo de agua potable en tu jardín.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 h-100 rounded-4 text-white" style="background-color: #005227;">
+          <h3 class="mb-3">Tecnología Automatizada</h3>
+          <p>Riego inteligente que se activa cuando tus plantas realmente lo necesitan.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 h-100 rounded-4" style="background-color: white; border: 2px solid #005227;">
+          <h3 class="mb-3" style="color: #005227;">Impacto Ecológico</h3>
+          <p style="color: #333;">Contribuye directamente a la conservación de los recursos hídricos.</p>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
+<section class="py-5" style="background-color: #005227;">
+  <div class="container">
+    <h2 class="text-center mb-5" style="color: #ffffff;">Cómo funciona nuestro sistema</h2>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-4 h-100 rounded-4" style="background-color: white;">
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #038554; color: white;">1</div>
+            <h4 style="color: #005227;">Recolección</h4>
+          </div>
+          <p style="color: #333;">Captamos el agua de lluvia mediante canaletas y filtros especializados.</p>
+          <img src="../../../assets/cultivo.jpg" alt="Proceso" class="img-fluid rounded mt-3">
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="p-4 h-100 rounded-4" style="background-color: white;">
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #038554; color: white;">2</div>
+            <h4 style="color: #005227;">Distribución</h4>
+          </div>
+          <p style="color: #333;">El agua almacenada se distribuye automáticamente según las necesidades de tus plantas.</p>
+          <img src="../../../assets/cultivo.jpg" alt="Proceso" class="img-fluid rounded mt-3">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="py-5">
+  <div class="container">
+    <div class="rounded-4 p-5 text-center" style="background: linear-gradient(135deg, #043d04, #31a005);">
+      <h2 class="text-white mb-4">¡Unete a nosostros, Se parte del cambio!</h2>
+      <button class="btn btn-light btn-lg me-3" routerLink="/sobre-nosotros" style="color: #007018;">Sobre nosotros</button>
+      <button class="btn btn-outline-light btn-lg" routerLink="/cotizaciones">Cotizacion</button>
+    </div>
+  </div>
+</section>
+<section class="py-5" style="background-color: #f5f5f5;">
+  <div class="container">
+    <h2 class="text-center mb-5" style="color: #005227;">Lo que dicen nuestros clientes</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let v of valoracionesPublicas">
+        <div class="p-4 h-100 rounded-4 shadow-sm" style="background-color: white; border-left: 6px solid #038554;">
+          <h5 class="mb-2" style="color: #005227;">
+            {{ v.usuario?.nombreCompleto || 'Usuario' }}
+          </h5>
+          <p class="text-warning mb-1">
+            <span *ngFor="let star of [].constructor(v.calificacion)">⭐</span>
+          </p>
+          <p style="color: #333;">"{{ v.comentario }}"</p>
+          <small class="text-muted">{{ v.fecha | date:'mediumDate' }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <app-footer></app-footer>

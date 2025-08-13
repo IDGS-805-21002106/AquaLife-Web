@@ -1,72 +1,76 @@
 <app-navbar></app-navbar>
 
-
-
 <section class="cotizacion-section">
   <div class="container">
+    <div class="title-box text-center mb-4">
+      <h2>Generar Cotización</h2>
+    </div>
+
     <div class="row align-items-start justify-content-center">
-      
       <div class="col-md-6">
         <form class="form-cotizacion p-4 shadow rounded" #form="ngForm" (ngSubmit)="mostrarModal()">
-  <div class="mb-3">
-    <label>Nombre (s):</label>
-    <input type="text" class="form-control" name="nombre" [(ngModel)]="cotizacion.nombre" required />
-  </div>
-  <div class="mb-3">
-    <label>Apellido Paterno:</label>
-    <input type="text" class="form-control" name="apellidoPaterno" [(ngModel)]="cotizacion.apellidoPaterno" required />
-  </div>
-  <div class="mb-3">
-    <label>Apellido Materno:</label>
-    <input type="text" class="form-control" name="apellidoMaterno" [(ngModel)]="cotizacion.apellidoMaterno" />
-  </div>
-  <div class="mb-3">
-    <label>Correo Electrónico:</label>
-    <input type="email" class="form-control" name="correo" [(ngModel)]="cotizacion.correo" required />
-  </div>
-  <div class="mb-3">
-    <label>Teléfono:</label>
-    <input type="tel" class="form-control" name="telefono" [(ngModel)]="cotizacion.telefono" />
-  </div>
-  <div class="mb-3">
-    <label>Estado:</label>
-    <input type="text" class="form-control" name="estado" [(ngModel)]="cotizacion.estado" />
-  </div>
-  <div class="mb-3">
-    <label>Ciudad:</label>
-    <input type="text" class="form-control" name="ciudad" [(ngModel)]="cotizacion.ciudad" />
-  </div>
+          <div class="mb-3">
+            <label>Nombre (s):</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="cotizacion.nombre" required />
+          </div>
+          <div class="mb-3">
+            <label>Apellido Paterno:</label>
+            <input type="text" class="form-control" name="apellidoPaterno" [(ngModel)]="cotizacion.apellidoPaterno" required />
+          </div>
+          <div class="mb-3">
+            <label>Apellido Materno:</label>
+            <input type="text" class="form-control" name="apellidoMaterno" [(ngModel)]="cotizacion.apellidoMaterno" />
+          </div>
+          <div class="mb-3">
+            <label>Correo Electrónico:</label>
+            <input 
+              type="email" 
+              class="form-control" 
+              name="correo" 
+              [(ngModel)]="cotizacion.correo" 
+              readonly
+            />
+          </div>
+          <div class="mb-3">
+            <label>Teléfono:</label>
+            <input type="tel" class="form-control" name="telefono" [(ngModel)]="cotizacion.telefono" />
+          </div>
+          <div class="mb-3">
+            <label>Estado:</label>
+            <input type="text" class="form-control" name="estado" [(ngModel)]="cotizacion.estado" />
+          </div>
+          <div class="mb-3">
+            <label>Ciudad:</label>
+            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cotizacion.ciudad" />
+          </div>
 
-  <div class="mb-3">
-    <label>Producto:</label>
-    <select class="form-control" [(ngModel)]="productoSeleccionadoId" name="producto" required>
-      <option value="">Selecciona un producto</option>
-        <option *ngFor="let p of productos" [value]="p.id">{{ p.nombre }}</option>
-    </select>
-  </div>
+          <div class="mb-3">
+            <label>Producto:</label>
+            <select class="form-control" [(ngModel)]="productoSeleccionadoId" name="producto" required>
+              <option value="">Selecciona un producto</option>
+              <option *ngFor="let p of productos" [value]="p.id">{{ p.nombre }}</option>
+            </select>
+          </div>
 
-  <button type="submit" class="btn btn-success btn-enviar w-100">Enviar</button>
-</form>
+          <button type="submit" class="btn btn-success btn-enviar w-100">Enviar</button>
+        </form>
 
-<div class="modal fade" id="modalPrecio" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content p-4">
-      <h5 class="modal-title">Cotización generada</h5>
-      <div class="modal-body">
-        El precio final del producto seleccionado es:  
-        <strong>${{ precioCalculado | number:'1.2-2' }}</strong>
+        <div class="modal fade" id="modalPrecio" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+              <h5 class="modal-title">Cotización generada</h5>
+              <div class="modal-body">
+                El precio final del producto seleccionado es:  
+                <strong>${{ precioCalculado | number:'1.2-2' }}</strong>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" (click)="enviarCotizacion()" data-bs-dismiss="modal">Ordenar</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" (click)="enviarCotizacion()" data-bs-dismiss="modal">Ordenar</button>
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-      </div>
-
       
       <div class="col-md-5 mt-4 mt-md-0">
         <div class="image-placeholder-cotizacion">
@@ -76,6 +80,5 @@
     </div>
   </div>
 </section>
-
 
 <app-footer></app-footer>

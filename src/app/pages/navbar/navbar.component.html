@@ -17,7 +17,7 @@
 
 <div class="offcanvas offcanvas-start sidebar-custom" tabindex="-1" id="sidebarMenu">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Menú</h5>
+    <h5 class="offcanvas-title">Aqualife</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
@@ -26,22 +26,18 @@
       <li class="nav-item"><a class="nav-link" routerLink="/faq">Preguntas frecuentes</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a></li>
 
-      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
       </li>
 
-      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/carrito">Carrito</a>
       </li>
 
 
-      <li class="nav-item" *ngIf="role === 'cliente' || role === 'Administrador'">
+      <li class="nav-item" *ngIf="role === 'Cliente' || role === 'Administrador'">
         <a class="nav-link" routerLink="/perfil">Perfil</a>
       </li>
-
-
-
-      
 
 
 

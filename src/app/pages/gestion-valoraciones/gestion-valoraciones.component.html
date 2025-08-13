@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <div class="title-box text-center mb-4">
+    <h2>Gestión de Valoraciones</h2>
+  </div>
+
+  <table class="table table-bordered mt-3" *ngIf="valoracionesPendientes.length > 0">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Comentario</th>
+        <th>Calificación</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of valoracionesPendientes">
+        <td>{{ v.usuario?.nombreCompleto }}</td>
+        <td>{{ v.comentario }}</td>
+        <td>{{ v.calificacion }} ⭐</td>
+        <td>{{ v.fecha | date:'short' }}</td>
+        <td>
+          <button class="btn btn-success btn-sm me-2" (click)="aprobar(v.id)">Aprobar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminar(v.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="valoracionesPendientes.length === 0" class="alert alert-info">
+    No hay valoraciones pendientes.
+  </div>
+</div>
+
+<app-footer></app-footer>

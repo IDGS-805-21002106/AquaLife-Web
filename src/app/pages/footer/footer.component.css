@@ -1,13 +1,13 @@
 .footer-custom {
-  background-color: #f3eef7;
+  background-color: #00a85f;
   border-top: 1px solid #ddd;
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.9rem;
-  color: #555;
+  color: #ffffff;
 }
 
 .footer-links a {
-  color: #00c275;
+  color: #6dfcc3;
   text-decoration: none;
   margin: 0 8px;
 }

@@ -32,23 +32,31 @@ body {
   border: none;
 }
 
-.usuarios-section {
-  padding: 50px 20px;
+.valoraciones-section {
+  padding: 60px 20px;
 }
 
-.form-box {
+.valoracion-card {
   background-color: #dddddd;
-  border-radius: 10px;
+  border-left: 5px solid #00c275;
+  border-radius: 12px;
 }
 
-.table-box {
-  background-color: #dddddd;
-  border-radius: 10px;
-  padding: 20px;
+.stars {
+  font-size: 20px;
+  color: #f0c330;
 }
 
-.table-header-green {
-  background-color: #00c275;
+.comentario {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.autor {
+  font-style: italic;
+  color: #555;
+  font-size: 14px;
 }
 
 .btn-success {
@@ -59,7 +67,6 @@ body {
 .btn-success:hover {
   background-color: #00a85f;
 }
-
 
 .title-box {
   background-color: #00c275;

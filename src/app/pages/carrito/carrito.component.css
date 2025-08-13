@@ -1,15 +1,24 @@
-/* Fondo general */
 body {
   background-color: #f3eef7;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Espaciado para el contenido del carrito */
+.title-box {
+  background-color: #00c275;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
+.title-box h2 {
+  margin: 0;
+  color: white; 
+}
+
 .carrito-section {
   padding: 60px 20px;
 }
 
-/* Contenedor de tabla de historial */
 .historial-box {
   background-color: #dddddd;
   border-radius: 10px;
@@ -17,12 +26,10 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Cabecera de la tabla */
 .table-header-green {
   background-color: #00c275;
 }
 
-/* Botones personalizados */
 .btn-success {
   background-color: #00c275;
   border: none;
@@ -40,7 +47,6 @@ body {
   background-color: #bbb;
 }
 
-/* Centrado y espacio en caso de vacío */
 .table td,
 .table th {
   vertical-align: middle;

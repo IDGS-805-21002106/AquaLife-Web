@@ -1,8 +1,19 @@
-html, body {
-  height: 100%;
+html {
+  min-height: 100%;
   overflow-x: hidden;
+  min-width: 100%;
 }
 
 body {
-  overflow-y: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+body {
+  padding-right: 0 !important;
+}
+
+.offcanvas-backdrop {
+  display: none !important;
 }

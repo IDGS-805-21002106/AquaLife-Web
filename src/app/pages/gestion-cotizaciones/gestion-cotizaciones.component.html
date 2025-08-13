@@ -1,14 +1,16 @@
 <app-navbar></app-navbar>
 
 <div class="container mt-4">
-  <h2>Gestión de Cotizaciones</h2>
+  <div class="title-box text-center mb-4">
+    <h2>Gestión de Cotizaciones</h2>
+  </div>
 
   <div *ngIf="cotizaciones.length === 0" class="alert alert-info mt-4">
     No hay cotizaciones registradas.
   </div>
 
   <table class="table table-bordered table-hover mt-4" *ngIf="cotizaciones.length > 0">
-    <thead class="table-light">
+    <thead class="table-header-green text-white">
       <tr>
         <th>Nombre</th>
         <th>Correo</th>
@@ -35,4 +37,3 @@
 </div>
 
 <app-footer></app-footer>
-

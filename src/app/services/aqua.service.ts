@@ -195,7 +195,39 @@ login(datos: any): Observable<any> {
 
 
 getUsuarioPorCorreo(correo: string) {
-  return this.http.get<any>(`${this.apiUrl}Aqua/ObtenerUsuarioPorCorreo/${correo}`);
+  const correoCodificado = encodeURIComponent(correo);
+  return this.http.get(`${this.apiUrl}Aqua/ObtenerUsuarioPorCorreo/${correoCodificado}`);
+}
+
+
+// correo cotización
+enviarCorreoCotizacion(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}Cotizacion/EnviarCorreoCotizacion`, data);
+}
+
+// Valoraciones
+getValoracionesPublicas() {
+  return this.http.get<any[]>(`${this.apiUrl}Valoraciones/Publicas`);
+}
+
+
+
+getValoracionesPendientes() {
+  return this.http.get<any[]>(`${this.apiUrl}Valoraciones/Pendientes`);
+}
+
+postValoracion(valoracion: any) {
+  return this.http.post(`${this.apiUrl}Valoraciones`, valoracion, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
+
+aprobarValoracion(id: number) {
+  return this.http.put(`${this.apiUrl}Valoraciones/Aprobar/${id}`, {});
+}
+
+deleteValoracion(id: number) {
+  return this.http.delete(`${this.apiUrl}Valoraciones/${id}`);
 }
 
 

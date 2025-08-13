@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AquaService } from '../../services/aqua.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-
 
 interface Producto {
   id: number;
@@ -27,6 +26,7 @@ interface Insumo {
   nombre: string;
   unidadMedida: string;
   cantidadDisponible: number;
+  promedio: number; 
 }
 
 @Component({
@@ -56,6 +56,8 @@ export class ProductosComponent implements OnInit {
     insumoId: 0,
     cantidad: 1
   };
+
+  precioCalculado: number = 0;
 
   modoEdicion: boolean = false;
   productoEditandoId: number | null = null;
@@ -94,20 +96,21 @@ export class ProductosComponent implements OnInit {
   }
 
   cargarInsumos(): Promise<void> {
-    return new Promise((resolve) => {
-      this.servicio.getInsumos().subscribe({
-        next: (data: Insumo[]) => {
-          this.insumos = data;
-          resolve();
-        },
-        error: (err) => {
-          console.error('Error al cargar insumos:', err);
-          alert('Error al cargar insumos. Verifique la consola para más detalles.');
-          resolve();
-        }
-      });
+  return new Promise((resolve) => {
+    this.servicio.getInsumos().subscribe({
+      next: (data: Insumo[]) => {
+        this.insumos = data;
+        resolve();
+      },
+      error: (err) => {
+        console.error('Error al cargar insumos:', err);
+        alert('Error al cargar insumos. Verifique la consola para más detalles.');
+        resolve();
+      }
     });
-  }
+  });
+}
+
 
   agregarInsumoAProducto(): void {
     if (this.nuevoInsumoProducto.insumoId <= 0) {
@@ -144,16 +147,24 @@ export class ProductosComponent implements OnInit {
     }
 
     this.nuevoInsumoProducto = { insumoId: 0, cantidad: 1 };
+    this.calcularPrecio();
   }
+
+  calcularPrecio(): void {
+  let total = 0;
+  this.nuevoProducto.insumos.forEach(insumoSel => {
+    const insumoData = this.insumos.find(i => i.id === insumoSel.insumoId);
+    if (insumoData && insumoData.promedio != null) {
+      total += insumoData.promedio * insumoSel.cantidad;
+    }
+  });
+  this.nuevoProducto.precio = total;
+  this.precioCalculado = total;
+}
 
   registrarProducto(): void {
     if (!this.nuevoProducto.nombre.trim()) {
       alert('El nombre del producto es requerido');
-      return;
-    }
-
-    if (this.nuevoProducto.precio <= 0) {
-      alert('El precio debe ser mayor a cero');
       return;
     }
 
@@ -170,7 +181,6 @@ export class ProductosComponent implements OnInit {
     const productoData = {
       nombre: this.nuevoProducto.nombre,
       descripcion: this.nuevoProducto.descripcion,
-      precio: this.nuevoProducto.precio,
       insumos: this.nuevoProducto.insumos.map(i => ({
         insumoId: i.insumoId,
         cantidad: i.cantidad
@@ -197,7 +207,6 @@ export class ProductosComponent implements OnInit {
       id: this.productoEditandoId,
       nombre: this.nuevoProducto.nombre,
       descripcion: this.nuevoProducto.descripcion,
-      precio: this.nuevoProducto.precio,
       insumos: this.nuevoProducto.insumos.map(i => ({
         insumoId: i.insumoId,
         cantidad: i.cantidad
@@ -218,20 +227,22 @@ export class ProductosComponent implements OnInit {
   }
 
   editarProducto(producto: Producto): void {
-    this.nuevoProducto = {
-      nombre: producto.nombre,
-      descripcion: producto.descripcion,
-      precio: producto.precio,
-      insumos: producto.productoInsumos.map(i => ({
-        insumoId: i.insumoId,
-        cantidad: i.cantidad,
-        insumoNombre: i.insumo?.nombre,
-        unidadMedida: i.insumo?.unidadMedida
-      }))
-    };
-    this.modoEdicion = true;
-    this.productoEditandoId = producto.id;
-  }
+  this.nuevoProducto = {
+    nombre: producto.nombre,
+    descripcion: producto.descripcion,
+    precio: producto.precio,
+    insumos: producto.productoInsumos.map(i => ({
+      insumoId: i.insumoId,
+      cantidad: i.cantidad,
+      insumoNombre: i.insumo?.nombre,
+      unidadMedida: i.insumo?.unidadMedida
+    }))
+  };
+  this.modoEdicion = true;
+  this.productoEditandoId = producto.id;
+  this.calcularPrecio(); 
+}
+
 
   eliminarProducto(id: number): void {
     if (!confirm('¿Estás seguro de eliminar este producto?')) return;
@@ -250,6 +261,7 @@ export class ProductosComponent implements OnInit {
 
   removerInsumo(index: number): void {
     this.nuevoProducto.insumos.splice(index, 1);
+    this.calcularPrecio();
   }
 
   getNombreInsumo(id: number): string {
@@ -272,5 +284,6 @@ export class ProductosComponent implements OnInit {
     this.nuevoInsumoProducto = { insumoId: 0, cantidad: 1 };
     this.modoEdicion = false;
     this.productoEditandoId = null;
+    this.precioCalculado = 0;
   }
 }
